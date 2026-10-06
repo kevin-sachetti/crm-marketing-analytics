@@ -2,12 +2,14 @@
 
 Análise de perfil e comportamento de associados de uma cooperativa financeira, com foco em
 marketing, segmentação e churn. O projeto cobre a geração da base, a análise exploratória em
-Python, a segmentação RFV, o NPS, o churn, os KPIs de campanhas e as consultas em SQL que
-reproduzem os principais números.
+Python, a segmentação RFV, o NPS, o churn, os KPIs de campanhas, as consultas em SQL que
+reproduzem os principais números e um dashboard no Power BI.
 
 > **Aviso:** os dados deste projeto são **simulados**. As relações entre as variáveis (por exemplo,
 > mais produtos levando a um NPS maior) foram definidas na etapa de geração da base. Os insights
 > abaixo demonstram o método de análise e **não representam fatos sobre nenhuma empresa real**.
+
+![Dashboard no Power BI: visão geral da base de associados](assets/powerbi_01_visao_geral.png)
 
 ## Análises realizadas
 
@@ -36,7 +38,7 @@ distribuição RFV.
 - **Python:** pandas, numpy, matplotlib, seaborn, scikit-learn
 - **SQL**
 - **Jupyter Notebook**
-- **Power BI:** dashboard com os principais indicadores (prints em `assets/`, a adicionar)
+- **Power BI:** modelo com relacionamentos entre as tabelas, medidas em DAX e dashboard de 4 páginas
 
 ## Principais resultados
 
@@ -50,6 +52,30 @@ distribuição RFV.
 | Taxa de abertura de campanhas | 39,9% |
 | Taxa de conversão de campanhas | 15,3% |
 | Saldo médio em conta corrente (associados com conta) | R$ 8.057,30 |
+
+## Dashboard no Power BI
+
+O dashboard tem 4 páginas, todas com filtros por segmento, estado e canal de aquisição. Os
+indicadores foram criados como medidas em DAX e usam as mesmas definições do notebook, então os
+números são os mesmos nas três camadas do projeto (Python, SQL e Power BI). A primeira página,
+Visão geral, é a imagem do início deste README.
+
+### Produtos e NPS
+
+![Dashboard: produtos, cross-sell e NPS](assets/powerbi_02_produtos_nps.png)
+
+### Churn e RFV
+
+![Dashboard: churn e segmentação RFV](assets/powerbi_03_churn_rfv.png)
+
+### Campanhas
+
+![Dashboard: KPIs de campanhas de marketing](assets/powerbi_04_campanhas.png)
+
+Para abrir o dashboard, use o arquivo `powerbi/dashboard_marketing_crm.pbip` no Power BI Desktop.
+Os prints acima mostram os dados já carregados. Para carregar ou atualizar os dados em outra
+máquina, ajuste a fonte das consultas `associados` e `associados_rfv` (em Transformar dados) para o
+caminho dos CSVs da pasta `data/`.
 
 ## Insights em destaque
 
@@ -135,5 +161,9 @@ crm-marketing-analytics/
 │   └── analise_marketing_crm.ipynb  # geração dos dados e análises
 ├── sql/
 │   └── queries_analiticas.sql       # consultas analíticas comentadas
-└── assets/                          # gráficos exportados do notebook (e prints do Power BI)
+├── powerbi/
+│   ├── dashboard_marketing_crm.pbip # arquivo para abrir o dashboard no Power BI Desktop
+│   ├── dashboard_marketing_crm.Report/         # páginas e visuais do relatório
+│   └── dashboard_marketing_crm.SemanticModel/  # tabelas, relacionamentos e medidas DAX
+└── assets/                          # gráficos exportados do notebook e prints do dashboard
 ```
