@@ -1,0 +1,126 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "p4_funil",
+  "position": {
+    "x": 20,
+    "y": 192,
+    "z": 9000,
+    "height": 250,
+    "width": 400,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "funnel",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "associados"
+                    }
+                  },
+                  "Property": "Campanhas Recebidas"
+                }
+              },
+              "queryRef": "associados.Campanhas Recebidas",
+              "nativeQueryRef": "Campanhas Recebidas",
+              "displayName": "Recebidas"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "associados"
+                    }
+                  },
+                  "Property": "Campanhas Abertas"
+                }
+              },
+              "queryRef": "associados.Campanhas Abertas",
+              "nativeQueryRef": "Campanhas Abertas",
+              "displayName": "Abertas"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "associados"
+                    }
+                  },
+                  "Property": "Campanhas Convertidas"
+                }
+              },
+              "queryRef": "associados.Campanhas Convertidas",
+              "nativeQueryRef": "Campanhas Convertidas",
+              "displayName": "Convertidas"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Funil de campanhas'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

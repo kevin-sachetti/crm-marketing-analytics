@@ -1,0 +1,149 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "p3_perfil_status",
+  "position": {
+    "x": 730,
+    "y": 192,
+    "z": 10000,
+    "height": 250,
+    "width": 530,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "associados"
+                    }
+                  },
+                  "Property": "status"
+                }
+              },
+              "queryRef": "associados.status",
+              "nativeQueryRef": "status",
+              "displayName": "Status"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "associados"
+                    }
+                  },
+                  "Property": "Média de Produtos"
+                }
+              },
+              "queryRef": "associados.Média de Produtos",
+              "nativeQueryRef": "Média de Produtos",
+              "displayName": "Produtos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "associados"
+                    }
+                  },
+                  "Property": "Nota NPS Média"
+                }
+              },
+              "queryRef": "associados.Nota NPS Média",
+              "nativeQueryRef": "Nota NPS Média",
+              "displayName": "Nota NPS"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "associados"
+                    }
+                  },
+                  "Property": "Transações Médias"
+                }
+              },
+              "queryRef": "associados.Transações Médias",
+              "nativeQueryRef": "Transações Médias",
+              "displayName": "Transações"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "associados"
+                    }
+                  },
+                  "Property": "Dias sem Acesso Médio"
+                }
+              },
+              "queryRef": "associados.Dias sem Acesso Médio",
+              "nativeQueryRef": "Dias sem Acesso Médio",
+              "displayName": "Dias sem acesso"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Perfil médio por status'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

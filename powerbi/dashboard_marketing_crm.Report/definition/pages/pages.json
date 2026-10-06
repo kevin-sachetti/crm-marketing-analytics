@@ -1,0 +1,10 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "pageOrder": [
+    "73e1555a08180213ecc6",
+    "pagina_produtos_nps",
+    "pagina_churn_rfv",
+    "pagina_campanhas"
+  ],
+  "activePageName": "73e1555a08180213ecc6"
+}

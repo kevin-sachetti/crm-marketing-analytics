@@ -1,0 +1,114 @@
+table associados_rfv
+	lineageTag: be211b66-7143-435c-a7b5-e1294d59dd43
+
+	measure 'Associados RFV' = COUNTROWS(associados_rfv)
+		formatString: #,0
+		lineageTag: 86ff3a4f-7d48-4b1f-bebc-9c44a7f53799
+
+	measure 'Saldo Médio RFV' = AVERAGE(associados_rfv[saldo_medio_cc])
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: f2aae9ba-cca6-46b1-9af1-73afec5b157d
+
+	measure 'Investimento Médio RFV' = AVERAGE(associados_rfv[valor_investido])
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 28ce85f2-08ad-4581-b5ac-9771d9527756
+
+	column associado_id
+		dataType: string
+		lineageTag: a2de08ea-3e89-4110-b8d1-75d2734b80b0
+		summarizeBy: none
+		sourceColumn: associado_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column score_recencia
+		dataType: double
+		lineageTag: db3ba484-09d8-4dd8-971e-629ecda37392
+		summarizeBy: sum
+		sourceColumn: score_recencia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column score_frequencia
+		dataType: double
+		lineageTag: b409a805-77e1-426c-9be7-79022c9dcb17
+		summarizeBy: sum
+		sourceColumn: score_frequencia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column score_valor
+		dataType: double
+		lineageTag: 9fd3a437-bae3-4785-9dd9-79545383994d
+		summarizeBy: sum
+		sourceColumn: score_valor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column score_rfv
+		dataType: double
+		lineageTag: e3515f87-ddfe-4168-a3e6-f31cb7cca6b0
+		summarizeBy: sum
+		sourceColumn: score_rfv
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column segmento_rfv
+		dataType: string
+		lineageTag: 69877534-5521-4795-a9e4-c8986eef0de9
+		summarizeBy: none
+		sourceColumn: segmento_rfv
+		sortByColumn: 'Ordem RFV'
+
+		annotation SummarizationSetBy = Automatic
+
+	column saldo_medio_cc
+		dataType: double
+		lineageTag: 131f252b-a740-4543-895f-cf6d1194583a
+		summarizeBy: sum
+		sourceColumn: saldo_medio_cc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_investido
+		dataType: double
+		lineageTag: 8f1e972d-02b9-49ac-bd6f-1cce2e6dc0ca
+		summarizeBy: sum
+		sourceColumn: valor_investido
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Ordem RFV'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e1bcb96-fa43-424f-9482-f9000e91dd69
+		summarizeBy: none
+		sourceColumn: Ordem RFV
+
+	partition associados_rfv = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\Users\kevin\Desktop\projetos git\crm-marketing-analytics\data\associados_rfv.csv"),[Delimiter=",", Columns=8, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"associado_id", type text}, {"score_recencia", type number}, {"score_frequencia", type number}, {"score_valor", type number}, {"score_rfv", type number}, {"segmento_rfv", type text}, {"saldo_medio_cc", type number}, {"valor_investido", type number}}),
+				    #"Ordem Adicionada" = Table.AddColumn(#"Tipo Alterado", "Ordem RFV", each if [segmento_rfv] = "Em risco" then 1 else if [segmento_rfv] = "Atenção" then 2 else if [segmento_rfv] = "Potencial" then 3 else 4, Int64.Type)
+				in
+				    #"Ordem Adicionada"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,415 @@
+table associados
+	lineageTag: a6363fec-4338-45c4-a075-8c6296be2538
+
+	measure 'Total Associados' = COUNTROWS(associados)
+		formatString: #,0
+		lineageTag: b1f5ab07-425f-41d8-955e-9401cd1c61d8
+
+	measure Ativos = CALCULATE([Total Associados], associados[status] = "Ativo")
+		formatString: #,0
+		lineageTag: c7f5b16b-6cf5-4863-82d5-e0b7e8d9a5f2
+
+	measure '% Ativos' = DIVIDE([Ativos], [Total Associados])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 2aae0e59-51ab-4366-8828-6752b17adb36
+
+	measure Churned = CALCULATE([Total Associados], associados[status] = "Churned")
+		formatString: #,0
+		lineageTag: befce1e9-b3d7-414d-aae4-13c1b312771e
+
+	measure 'Taxa de Churn' = DIVIDE([Churned], [Total Associados])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: c39937d0-de1d-4180-9d90-b796be086286
+
+	measure '% Promotores' = DIVIDE(CALCULATE([Total Associados], associados[nps_score] >= 9), [Total Associados])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 5ebc7982-1d2f-46c8-a1e4-d64c0f774004
+
+	measure '% Detratores' = DIVIDE(CALCULATE([Total Associados], associados[nps_score] <= 6), [Total Associados])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: a92f0ca2-4b68-444d-86c6-5ace5b6c5153
+
+	measure NPS = ([% Promotores] - [% Detratores]) * 100
+		formatString: 0.0
+		lineageTag: 2d8bfbf4-96d5-45cd-b750-942957ae5454
+
+	measure 'Média de Produtos' = AVERAGE(associados[qtd_produtos])
+		formatString: 0.00
+		lineageTag: 2629b0a8-e3a7-4a56-ac58-8571342116f4
+
+	measure 'Taxa de Abertura' = DIVIDE(SUM(associados[campanhas_abertas]), SUM(associados[campanhas_recebidas]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 3c84f8e1-2296-4539-b06a-7af29e2781ac
+
+	measure 'Taxa de Conversão' = DIVIDE(SUM(associados[campanhas_convertidas]), SUM(associados[campanhas_abertas]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: f8283972-0ab6-4160-b4bb-83c90479f8ce
+
+	measure 'Saldo Médio CC' = CALCULATE(AVERAGE(associados[saldo_medio_cc]), associados[tem_conta_corrente] = 1)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: fbc41b22-1c7f-4075-a95e-7dca6edea40b
+
+	measure 'Oportunidade Cartão' = CALCULATE([Total Associados], associados[status] = "Ativo", associados[tem_conta_corrente] = 1, associados[tem_cartao_credito] = 0)
+		formatString: #,0
+		lineageTag: 1447320b-5ad7-4f1c-a975-6c041f88f3a3
+
+	measure 'Idade Média' = AVERAGE(associados[idade])
+		formatString: 0.0
+		lineageTag: 97ab5087-f11f-4c29-a35d-5f19c3eeff0b
+
+	measure 'Nota NPS Média' = AVERAGE(associados[nps_score])
+		formatString: 0.00
+		lineageTag: 8480e294-5f42-4810-8725-d54304598806
+
+	measure 'Transações Médias' = AVERAGE(associados[transacoes_ultimo_trimestre])
+		formatString: 0.0
+		lineageTag: b9362547-465c-4efd-be30-cacd2a4f8c4d
+
+	measure 'Dias sem Acesso Médio' = AVERAGE(associados[dias_desde_ultimo_acesso])
+		formatString: 0.0
+		lineageTag: d97bd5e5-01b7-43cb-8eb5-47e5e52d12c2
+
+	measure 'Campanhas Recebidas' = SUM(associados[campanhas_recebidas])
+		formatString: #,0
+		lineageTag: 68495dad-726a-4d32-bace-e7c1ab03db00
+
+	measure 'Campanhas Abertas' = SUM(associados[campanhas_abertas])
+		formatString: #,0
+		lineageTag: 9331bccf-b27a-4192-a7be-9f7ed8bfea5e
+
+	measure 'Campanhas Convertidas' = SUM(associados[campanhas_convertidas])
+		formatString: #,0
+		lineageTag: 9a25d957-702c-4579-a7cb-f657401f7983
+
+	column associado_id
+		dataType: string
+		lineageTag: 65185860-5305-4359-be13-702923d3e367
+		summarizeBy: none
+		sourceColumn: associado_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column tem_conta_corrente
+		dataType: int64
+		formatString: 0
+		lineageTag: 4555e6ca-9cd7-490e-8a05-87ac66f96051
+		summarizeBy: sum
+		sourceColumn: tem_conta_corrente
+
+		annotation SummarizationSetBy = Automatic
+
+	column tem_cartao_credito
+		dataType: int64
+		formatString: 0
+		lineageTag: 768e3a11-67f8-4095-8d87-7b6acc9678a0
+		summarizeBy: sum
+		sourceColumn: tem_cartao_credito
+
+		annotation SummarizationSetBy = Automatic
+
+	column tem_seguro
+		dataType: int64
+		formatString: 0
+		lineageTag: a3303550-bd2e-438d-a920-15d7db34c92e
+		summarizeBy: sum
+		sourceColumn: tem_seguro
+
+		annotation SummarizationSetBy = Automatic
+
+	column tem_consorcio
+		dataType: int64
+		formatString: 0
+		lineageTag: eb4274a8-1f4e-4cc1-ad0e-6a8af0113117
+		summarizeBy: sum
+		sourceColumn: tem_consorcio
+
+		annotation SummarizationSetBy = Automatic
+
+	column tem_previdencia
+		dataType: int64
+		formatString: 0
+		lineageTag: efc27a83-5c16-485f-808f-93ca4eb53e9f
+		summarizeBy: sum
+		sourceColumn: tem_previdencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column tem_credito_rural
+		dataType: int64
+		formatString: 0
+		lineageTag: 327bff02-39ae-4ed1-9f82-cf64872caa6a
+		summarizeBy: sum
+		sourceColumn: tem_credito_rural
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome
+		dataType: string
+		lineageTag: 00921a99-d3e9-4337-ada3-4266978461fd
+		summarizeBy: none
+		sourceColumn: nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column idade
+		dataType: int64
+		formatString: 0
+		lineageTag: a6848f7a-14e8-4479-8910-d7c0c44badef
+		summarizeBy: sum
+		sourceColumn: idade
+
+		annotation SummarizationSetBy = Automatic
+
+	column genero
+		dataType: string
+		lineageTag: 6ef15a2b-4a24-40b5-a74e-4d60af71bd15
+		summarizeBy: none
+		sourceColumn: genero
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado
+		dataType: string
+		lineageTag: 6acc38ce-eeab-463d-9bd5-94c2ca640dde
+		summarizeBy: none
+		sourceColumn: estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column cidade
+		dataType: string
+		lineageTag: 4b411fa7-d2dc-4483-9b71-3e3a4b59470f
+		summarizeBy: none
+		sourceColumn: cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column segmento
+		dataType: string
+		lineageTag: 1ede58ed-1468-45d6-bc27-b5b97253c2bd
+		summarizeBy: none
+		sourceColumn: segmento
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_associacao
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6b5a2ff0-747a-46a5-9332-88c629ac9354
+		summarizeBy: none
+		sourceColumn: data_associacao
+
+		variation Variation
+			isDefault
+			relationship: 2e0d39f8-bc79-400d-bb03-fd40a8714218
+			defaultHierarchy: LocalDateTable_2a5fe5cf-8d1c-43cd-946e-14f7fd0114d2.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column canal_aquisicao
+		dataType: string
+		lineageTag: 4449cf28-12ac-48a3-955f-c477c43b3b54
+		summarizeBy: none
+		sourceColumn: canal_aquisicao
+
+		annotation SummarizationSetBy = Automatic
+
+	column transacoes_ultimo_trimestre
+		dataType: int64
+		formatString: 0
+		lineageTag: 798b2cd6-b49b-44a7-b0c8-005719c982e6
+		summarizeBy: sum
+		sourceColumn: transacoes_ultimo_trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	column saldo_medio_cc
+		dataType: double
+		lineageTag: 82bce9c8-afc1-447b-a69b-150b843aa261
+		summarizeBy: sum
+		sourceColumn: saldo_medio_cc
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_investido
+		dataType: double
+		lineageTag: 52ac2ace-06aa-4d74-8c04-d74fa04877d7
+		summarizeBy: sum
+		sourceColumn: valor_investido
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column nps_score
+		dataType: int64
+		formatString: 0
+		lineageTag: 5bf97a3e-1921-4035-92f4-426a9b2b66a1
+		summarizeBy: sum
+		sourceColumn: nps_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_desde_ultimo_acesso
+		dataType: int64
+		formatString: 0
+		lineageTag: cc5e9bef-d545-4124-b9e7-0de03bbd8d6a
+		summarizeBy: sum
+		sourceColumn: dias_desde_ultimo_acesso
+
+		annotation SummarizationSetBy = Automatic
+
+	column acessos_app_mes
+		dataType: int64
+		formatString: 0
+		lineageTag: fc5514ab-094d-4155-b253-6e1ea7e0b33f
+		summarizeBy: sum
+		sourceColumn: acessos_app_mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column campanhas_recebidas
+		dataType: int64
+		formatString: 0
+		lineageTag: 3c4860a1-d8b8-4ace-b653-0be56fe3aef2
+		summarizeBy: sum
+		sourceColumn: campanhas_recebidas
+
+		annotation SummarizationSetBy = Automatic
+
+	column campanhas_abertas
+		dataType: int64
+		formatString: 0
+		lineageTag: 366937d0-7c03-48ef-9427-0124f7f1f644
+		summarizeBy: sum
+		sourceColumn: campanhas_abertas
+
+		annotation SummarizationSetBy = Automatic
+
+	column campanhas_convertidas
+		dataType: int64
+		formatString: 0
+		lineageTag: 7162a747-a435-4299-9552-08bb35c9aa25
+		summarizeBy: sum
+		sourceColumn: campanhas_convertidas
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: bd4419b0-3835-475f-b2fb-37fefcc641ac
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column qtd_produtos
+		dataType: int64
+		formatString: 0
+		lineageTag: 00fba689-d33e-4b8f-8196-7eeb3dc4d833
+		summarizeBy: sum
+		sourceColumn: qtd_produtos
+
+		annotation SummarizationSetBy = Automatic
+
+	column taxa_abertura_campanha
+		dataType: double
+		lineageTag: 5f1760da-3295-4305-ba6e-c10ece0bcb09
+		summarizeBy: sum
+		sourceColumn: taxa_abertura_campanha
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column taxa_conversao_campanha
+		dataType: double
+		lineageTag: c89037dd-49da-4c93-acdf-4bc1663dad27
+		summarizeBy: sum
+		sourceColumn: taxa_conversao_campanha
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Anos de Associacao' = DATEDIFF(associados[data_associacao], DATE(2025, 9, 30), DAY) / 365.25
+		lineageTag: 944755e3-8a67-4db6-afd5-cdd8cca88a82
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Faixa Tempo de Associacao' =
+			
+			SWITCH(
+			    TRUE(),
+			    associados[Anos de Associacao] <= 1, "Até 1 ano",
+			    associados[Anos de Associacao] <= 2, "1 a 2 anos",
+			    associados[Anos de Associacao] <= 4, "2 a 4 anos",
+			    "4 anos ou mais"
+			)
+		lineageTag: d413ab3a-c049-4b75-b9fa-43cb16050135
+		summarizeBy: none
+		sortByColumn: 'Ordem Faixa Tempo'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Categoria NPS' =
+			
+			SWITCH(
+			    TRUE(),
+			    associados[nps_score] >= 9, "Promotor",
+			    associados[nps_score] >= 7, "Neutro",
+			    "Detrator"
+			)
+		lineageTag: bf4cf4e8-262c-48e8-99fd-70842304994d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ordem Faixa Tempo' =
+			
+			SWITCH(
+			    TRUE(),
+			    associados[Anos de Associacao] <= 1, 1,
+			    associados[Anos de Associacao] <= 2, 2,
+			    associados[Anos de Associacao] <= 4, 3,
+			    4
+			)
+		formatString: 0
+		lineageTag: 9cdde72d-7064-4fb4-ac68-2380b3676f26
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ano de Associacao' = YEAR(associados[data_associacao])
+		formatString: 0
+		lineageTag: 1419ca62-0fb5-45a2-85ea-359e827832aa
+		summarizeBy: none
+
+	column 'Mes de Associacao' = DATE(YEAR(associados[data_associacao]), MONTH(associados[data_associacao]), 1)
+		formatString: mm/yyyy
+		lineageTag: 1658f3a4-8828-483c-a849-42427b381b56
+		summarizeBy: none
+
+	partition associados = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\Users\kevin\Desktop\projetos git\crm-marketing-analytics\data\associados_simulados.csv"),[Delimiter=",", Columns=28, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"associado_id", type text}, {"nome", type text}, {"idade", Int64.Type}, {"genero", type text}, {"estado", type text}, {"cidade", type text}, {"segmento", type text}, {"data_associacao", type date}, {"canal_aquisicao", type text}, {"tem_conta_corrente", Int64.Type}, {"tem_cartao_credito", Int64.Type}, {"tem_seguro", Int64.Type}, {"tem_consorcio", Int64.Type}, {"tem_previdencia", Int64.Type}, {"tem_credito_rural", Int64.Type}, {"transacoes_ultimo_trimestre", Int64.Type}, {"saldo_medio_cc", type number}, {"valor_investido", type number}, {"nps_score", Int64.Type}, {"dias_desde_ultimo_acesso", Int64.Type}, {"acessos_app_mes", Int64.Type}, {"campanhas_recebidas", Int64.Type}, {"campanhas_abertas", Int64.Type}, {"campanhas_convertidas", Int64.Type}, {"status", type text}, {"qtd_produtos", Int64.Type}, {"taxa_abertura_campanha", type number}, {"taxa_conversao_campanha", type number}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,53 @@
+table produtos_posse
+	lineageTag: 8776260c-6322-45fe-b861-4f891765e88e
+
+	measure Penetração = AVERAGE(produtos_posse[tem_produto])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 9e1be6ad-7413-4749-98ae-408f82921cf3
+
+	column associado_id
+		dataType: string
+		lineageTag: 9e54d8ce-889e-47f1-a442-73feea4ccc3a
+		summarizeBy: none
+		sourceColumn: associado_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column produto
+		dataType: string
+		lineageTag: 3642849a-7b37-495f-aad9-894fb65b5f36
+		summarizeBy: none
+		sourceColumn: produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column tem_produto
+		dataType: int64
+		formatString: 0
+		lineageTag: 7043c806-cd69-42f0-aeef-8336209a9f03
+		summarizeBy: sum
+		sourceColumn: tem_produto
+
+		annotation SummarizationSetBy = Automatic
+
+	partition produtos_posse = m
+		mode: import
+		source =
+				let
+				    Fonte = associados,
+				    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"associado_id", "tem_conta_corrente", "tem_cartao_credito", "tem_seguro", "tem_consorcio", "tem_previdencia", "tem_credito_rural"}),
+				    #"Outras Colunas Não Dinâmicas" = Table.UnpivotOtherColumns(#"Outras Colunas Removidas", {"associado_id"}, "Atributo", "Valor"),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Outras Colunas Não Dinâmicas",{{"Atributo", "produto"}, {"Valor", "tem_produto"}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Colunas Renomeadas","tem_cartao_credito","Cartão de crédito",Replacer.ReplaceText,{"produto"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","tem_seguro","Seguro",Replacer.ReplaceText,{"produto"}),
+				    #"Valor Substituído2" = Table.ReplaceValue(#"Valor Substituído1","tem_consorcio","Consórcio",Replacer.ReplaceText,{"produto"}),
+				    #"Valor Substituído3" = Table.ReplaceValue(#"Valor Substituído2","tem_previdencia","Previdência",Replacer.ReplaceText,{"produto"}),
+				    #"Valor Substituído4" = Table.ReplaceValue(#"Valor Substituído3","tem_credito_rural","Crédito rural",Replacer.ReplaceText,{"produto"}),
+				    #"Valor Substituído5" = Table.ReplaceValue(#"Valor Substituído4","tem_conta_corrente","Conta corrente",Replacer.ReplaceText,{"produto"})
+				in
+				    #"Valor Substituído5"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

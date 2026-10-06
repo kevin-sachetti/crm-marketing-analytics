@@ -1,0 +1,15 @@
+relationship AutoDetected_98ca9aa9-fe46-4778-921c-ccbd24de3628
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: associados_rfv.associado_id
+	toColumn: associados.associado_id
+
+relationship 2e0d39f8-bc79-400d-bb03-fd40a8714218
+	joinOnDateBehavior: datePartOnly
+	fromColumn: associados.data_associacao
+	toColumn: LocalDateTable_2a5fe5cf-8d1c-43cd-946e-14f7fd0114d2.Date
+
+relationship cf10b75d-1eb4-2d25-53e1-976ecd3de759
+	fromColumn: produtos_posse.associado_id
+	toColumn: associados.associado_id
+
