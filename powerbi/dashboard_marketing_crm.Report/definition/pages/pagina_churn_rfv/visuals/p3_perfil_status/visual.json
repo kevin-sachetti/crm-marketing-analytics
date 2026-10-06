@@ -38,12 +38,12 @@
                       "Entity": "associados"
                     }
                   },
-                  "Property": "Média de Produtos"
+                  "Property": "Média de Categorias"
                 }
               },
-              "queryRef": "associados.Média de Produtos",
-              "nativeQueryRef": "Média de Produtos",
-              "displayName": "Produtos"
+              "queryRef": "associados.Média de Categorias",
+              "nativeQueryRef": "Média de Categorias",
+              "displayName": "Categorias"
             },
             {
               "field": {
@@ -53,12 +53,12 @@
                       "Entity": "associados"
                     }
                   },
-                  "Property": "Nota NPS Média"
+                  "Property": "Nota Média de Recomendação"
                 }
               },
-              "queryRef": "associados.Nota NPS Média",
-              "nativeQueryRef": "Nota NPS Média",
-              "displayName": "Nota NPS"
+              "queryRef": "associados.Nota Média de Recomendação",
+              "nativeQueryRef": "Nota Média de Recomendação",
+              "displayName": "Nota média"
             },
             {
               "field": {

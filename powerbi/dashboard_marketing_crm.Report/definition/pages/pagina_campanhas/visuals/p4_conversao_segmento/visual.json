@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p4_conversao_segmento",
   "position": {
     "x": 640,
     "y": 452,
-    "z": 13000,
+    "z": 14000,
     "height": 256,
     "width": 620,
-    "tabOrder": 13000
+    "tabOrder": 14000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -28,8 +28,8 @@
               },
               "queryRef": "associados.segmento",
               "nativeQueryRef": "segmento",
-              "displayName": "Segmento",
-              "active": true
+              "active": true,
+              "displayName": "Segmento"
             }
           ]
         },
@@ -43,11 +43,11 @@
                       "Entity": "associados"
                     }
                   },
-                  "Property": "Taxa de Conversão"
+                  "Property": "Conversão sobre Aberturas"
                 }
               },
-              "queryRef": "associados.Taxa de Conversão",
-              "nativeQueryRef": "Taxa de Conversão"
+              "queryRef": "associados.Conversão sobre Aberturas",
+              "nativeQueryRef": "Conversão sobre Aberturas"
             }
           ]
         }
@@ -62,13 +62,12 @@
                     "Entity": "associados"
                   }
                 },
-                "Property": "Taxa de Conversão"
+                "Property": "Conversão sobre Aberturas"
               }
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "objects": {
@@ -104,6 +103,41 @@
             }
           }
         }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "defaultColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3B811D'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3B811D'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "associados.Conversão sobre Aberturas"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -120,7 +154,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Taxa de conversão por segmento'"
+                  "Value": "'Conversão sobre aberturas por segmento'"
                 }
               }
             }

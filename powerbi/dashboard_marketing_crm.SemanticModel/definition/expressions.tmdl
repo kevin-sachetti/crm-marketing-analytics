@@ -1,0 +1,5 @@
+expression PastaDados = "C:\Users\kevin\Desktop\projetos git\crm-marketing-analytics\data\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 52a75738-961a-4a40-b39e-e0ce6206221b
+
+	annotation PBI_ResultType = Text
+

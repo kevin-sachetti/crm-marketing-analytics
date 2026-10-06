@@ -33,7 +33,7 @@ table associados
 		formatString: 0.0
 		lineageTag: 2d8bfbf4-96d5-45cd-b750-942957ae5454
 
-	measure 'Média de Produtos' = AVERAGE(associados[qtd_produtos])
+	measure 'Média de Categorias' = AVERAGE(associados[qtd_produtos])
 		formatString: 0.00
 		lineageTag: 2629b0a8-e3a7-4a56-ac58-8571342116f4
 
@@ -41,7 +41,7 @@ table associados
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: 3c84f8e1-2296-4539-b06a-7af29e2781ac
 
-	measure 'Taxa de Conversão' = DIVIDE(SUM(associados[campanhas_convertidas]), SUM(associados[campanhas_abertas]))
+	measure 'Conversão sobre Aberturas' = DIVIDE(SUM(associados[campanhas_convertidas]), SUM(associados[campanhas_abertas]))
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: f8283972-0ab6-4160-b4bb-83c90479f8ce
 
@@ -49,7 +49,7 @@ table associados
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		lineageTag: fbc41b22-1c7f-4075-a95e-7dca6edea40b
 
-	measure 'Oportunidade Cartão' = CALCULATE([Total Associados], associados[status] = "Ativo", associados[tem_conta_corrente] = 1, associados[tem_cartao_credito] = 0)
+	measure 'Público Potencial de Cartão' = CALCULATE([Total Associados], associados[status] = "Ativo", associados[tem_conta_corrente] = 1, associados[tem_cartao_credito] = 0)
 		formatString: #,0
 		lineageTag: 1447320b-5ad7-4f1c-a975-6c041f88f3a3
 
@@ -57,7 +57,7 @@ table associados
 		formatString: 0.0
 		lineageTag: 97ab5087-f11f-4c29-a35d-5f19c3eeff0b
 
-	measure 'Nota NPS Média' = AVERAGE(associados[nps_score])
+	measure 'Nota Média de Recomendação' = AVERAGE(associados[nps_score])
 		formatString: 0.00
 		lineageTag: 8480e294-5f42-4810-8725-d54304598806
 
@@ -80,6 +80,26 @@ table associados
 	measure 'Campanhas Convertidas' = SUM(associados[campanhas_convertidas])
 		formatString: #,0
 		lineageTag: 9a25d957-702c-4579-a7cb-f657401f7983
+
+	measure '% Neutros' = DIVIDE(CALCULATE([Total Associados], associados[nps_score] IN {7, 8}), [Total Associados])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 1a169ddc-dba9-4e9e-9caf-638af78d91f6
+
+	measure 'Respostas NPS' = COUNT(associados[nps_score])
+		formatString: #,0
+		lineageTag: f8410d1e-ec2a-47be-b9e0-42dc5565127c
+
+	measure 'Conversão sobre Recebimentos' = DIVIDE(SUM(associados[campanhas_convertidas]), SUM(associados[campanhas_recebidas]))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 7205ac9a-9aec-404c-9070-1598109df6b3
+
+	measure 'Cor Status' = SWITCH(SELECTEDVALUE(associados[status]), "Ativo", "#3B811D", "Inativo", "#FAB219", "Churned", "#D03B3B", "#3B811D")
+		isHidden
+		lineageTag: e44a3305-bcaf-49be-a859-6cd13ee8caa3
+
+	measure 'Cor NPS' = IF([NPS] < 0, "#E34948", "#3B811D")
+		isHidden
+		lineageTag: 1100f4a7-3d0c-4397-8b42-a4fec362ef99
 
 	column associado_id
 		dataType: string
@@ -399,13 +419,17 @@ table associados
 		lineageTag: 1658f3a4-8828-483c-a849-42427b381b56
 		summarizeBy: none
 
+	column 'Faixa de Categorias' = IF(associados[qtd_produtos] >= 5, "5 ou mais", FORMAT(associados[qtd_produtos], "0"))
+		lineageTag: 09f7d188-b36e-4757-a594-c2467f3e935c
+		summarizeBy: none
+
 	partition associados = m
 		mode: import
 		source =
 				let
-				    Fonte = Csv.Document(File.Contents("C:\Users\kevin\Desktop\projetos git\crm-marketing-analytics\data\associados_simulados.csv"),[Delimiter=",", Columns=28, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    Fonte = Csv.Document(File.Contents(PastaDados & "associados_simulados.csv"),[Delimiter=",", Columns=28, Encoding=65001, QuoteStyle=QuoteStyle.None]),
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
-				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"associado_id", type text}, {"nome", type text}, {"idade", Int64.Type}, {"genero", type text}, {"estado", type text}, {"cidade", type text}, {"segmento", type text}, {"data_associacao", type date}, {"canal_aquisicao", type text}, {"tem_conta_corrente", Int64.Type}, {"tem_cartao_credito", Int64.Type}, {"tem_seguro", Int64.Type}, {"tem_consorcio", Int64.Type}, {"tem_previdencia", Int64.Type}, {"tem_credito_rural", Int64.Type}, {"transacoes_ultimo_trimestre", Int64.Type}, {"saldo_medio_cc", type number}, {"valor_investido", type number}, {"nps_score", Int64.Type}, {"dias_desde_ultimo_acesso", Int64.Type}, {"acessos_app_mes", Int64.Type}, {"campanhas_recebidas", Int64.Type}, {"campanhas_abertas", Int64.Type}, {"campanhas_convertidas", Int64.Type}, {"status", type text}, {"qtd_produtos", Int64.Type}, {"taxa_abertura_campanha", type number}, {"taxa_conversao_campanha", type number}})
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"associado_id", type text}, {"nome", type text}, {"idade", Int64.Type}, {"genero", type text}, {"estado", type text}, {"cidade", type text}, {"segmento", type text}, {"data_associacao", type date}, {"canal_aquisicao", type text}, {"tem_conta_corrente", Int64.Type}, {"tem_cartao_credito", Int64.Type}, {"tem_seguro", Int64.Type}, {"tem_consorcio", Int64.Type}, {"tem_previdencia", Int64.Type}, {"tem_credito_rural", Int64.Type}, {"transacoes_ultimo_trimestre", Int64.Type}, {"saldo_medio_cc", type number}, {"valor_investido", type number}, {"nps_score", Int64.Type}, {"dias_desde_ultimo_acesso", Int64.Type}, {"acessos_app_mes", Int64.Type}, {"campanhas_recebidas", Int64.Type}, {"campanhas_abertas", Int64.Type}, {"campanhas_convertidas", Int64.Type}, {"status", type text}, {"qtd_produtos", Int64.Type}, {"taxa_abertura_campanha", type number}, {"taxa_conversao_campanha", type number}}, "en-US")
 				in
 				    #"Tipo Alterado"
 

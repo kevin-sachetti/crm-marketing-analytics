@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_cartao_5",
   "position": {
-    "x": 1016,
+    "x": 644,
     "y": 84,
     "z": 8000,
     "height": 96,
-    "width": 241,
+    "width": 148,
     "tabOrder": 8000
   },
   "visual": {
@@ -23,11 +23,11 @@
                       "Entity": "associados"
                     }
                   },
-                  "Property": "Oportunidade Cartão"
+                  "Property": "% Promotores"
                 }
               },
-              "queryRef": "associados.Oportunidade Cartão",
-              "nativeQueryRef": "Oportunidade Cartão"
+              "queryRef": "associados.% Promotores",
+              "nativeQueryRef": "% Promotores"
             }
           ]
         }
@@ -67,7 +67,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "8D"
                 }
               }
             }

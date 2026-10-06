@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p4_filtro_canal",
   "position": {
     "x": 1080,
@@ -28,6 +28,7 @@
               },
               "queryRef": "associados.canal_aquisicao",
               "nativeQueryRef": "canal_aquisicao",
+              "active": true,
               "displayName": "Canal de aquisição"
             }
           ]

@@ -9,7 +9,7 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
-annotation PBI_QueryOrder = ["associados","associados_rfv","produtos_posse"]
+annotation PBI_QueryOrder = ["PastaDados","associados","associados_rfv","produtos_posse"]
 
 annotation PBI_ProTooling = ["DevMode"]
 

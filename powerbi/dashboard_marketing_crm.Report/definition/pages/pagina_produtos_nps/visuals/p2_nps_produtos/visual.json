@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p2_nps_produtos",
   "position": {
     "x": 640,
     "y": 192,
-    "z": 10000,
+    "z": 13000,
     "height": 250,
     "width": 620,
-    "tabOrder": 10000
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "clusteredColumnChart",
@@ -23,13 +23,13 @@
                       "Entity": "associados"
                     }
                   },
-                  "Property": "qtd_produtos"
+                  "Property": "Faixa de Categorias"
                 }
               },
-              "queryRef": "associados.qtd_produtos",
-              "nativeQueryRef": "qtd_produtos",
-              "displayName": "Quantidade de produtos",
-              "active": true
+              "queryRef": "associados.Faixa de Categorias",
+              "nativeQueryRef": "Faixa de Categorias",
+              "active": true,
+              "displayName": "Categorias de produtos"
             }
           ]
         },
@@ -62,13 +62,12 @@
                     "Entity": "associados"
                   }
                 },
-                "Property": "qtd_produtos"
+                "Property": "Faixa de Categorias"
               }
             },
             "direction": "Ascending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "objects": {
@@ -104,6 +103,52 @@
             }
           }
         }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "defaultColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3B811D'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "associados"
+                        }
+                      },
+                      "Property": "Cor NPS"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ]
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -120,7 +165,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'NPS por quantidade de produtos'"
+                  "Value": "'NPS por quantidade de categorias de produtos'"
                 }
               }
             }

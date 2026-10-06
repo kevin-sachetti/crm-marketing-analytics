@@ -13,6 +13,10 @@ table associados_rfv
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		lineageTag: 28ce85f2-08ad-4581-b5ac-9771d9527756
 
+	measure 'Cor RFV' = SWITCH(SELECTEDVALUE(associados_rfv[segmento_rfv]), "Baixo", "#7BC362", "Moderado", "#5BA141", "Alto", "#3B811D", "Muito alto", "#236001", "#3B811D")
+		isHidden
+		lineageTag: 54258b3c-811f-438d-be1b-410c2b7d808e
+
 	column associado_id
 		dataType: string
 		lineageTag: a2de08ea-3e89-4110-b8d1-75d2734b80b0
@@ -101,10 +105,10 @@ table associados_rfv
 		mode: import
 		source =
 				let
-				    Fonte = Csv.Document(File.Contents("C:\Users\kevin\Desktop\projetos git\crm-marketing-analytics\data\associados_rfv.csv"),[Delimiter=",", Columns=8, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    Fonte = Csv.Document(File.Contents(PastaDados & "associados_rfv.csv"),[Delimiter=",", Columns=8, Encoding=65001, QuoteStyle=QuoteStyle.None]),
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
-				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"associado_id", type text}, {"score_recencia", type number}, {"score_frequencia", type number}, {"score_valor", type number}, {"score_rfv", type number}, {"segmento_rfv", type text}, {"saldo_medio_cc", type number}, {"valor_investido", type number}}),
-				    #"Ordem Adicionada" = Table.AddColumn(#"Tipo Alterado", "Ordem RFV", each if [segmento_rfv] = "Em risco" then 1 else if [segmento_rfv] = "Atenção" then 2 else if [segmento_rfv] = "Potencial" then 3 else 4, Int64.Type)
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"associado_id", type text}, {"score_recencia", type number}, {"score_frequencia", type number}, {"score_valor", type number}, {"score_rfv", type number}, {"segmento_rfv", type text}, {"saldo_medio_cc", type number}, {"valor_investido", type number}}, "en-US"),
+				    #"Ordem Adicionada" = Table.AddColumn(#"Tipo Alterado", "Ordem RFV", each if [segmento_rfv] = "Baixo" then 1 else if [segmento_rfv] = "Moderado" then 2 else if [segmento_rfv] = "Alto" then 3 else 4, Int64.Type)
 				in
 				    #"Ordem Adicionada"
 

@@ -23,11 +23,12 @@
                       "Entity": "associados"
                     }
                   },
-                  "Property": "Taxa de Conversão"
+                  "Property": "Conversão sobre Aberturas"
                 }
               },
-              "queryRef": "associados.Taxa de Conversão",
-              "nativeQueryRef": "Taxa de Conversão"
+              "queryRef": "associados.Conversão sobre Aberturas",
+              "nativeQueryRef": "Conversão sobre Aberturas",
+              "displayName": "Conversão (aberturas)"
             }
           ]
         }
@@ -67,7 +68,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "8D"
                 }
               }
             }

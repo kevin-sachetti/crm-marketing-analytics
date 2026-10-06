@@ -117,19 +117,7 @@ cultureInfo pt-BR
 			          "ConceptualProperty": "qtd_produtos"
 			        }
 			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "Quantidade de produtos": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
+			      "State": "Generated"
 			    },
 			    "associados.faixa_tempo_de_associacao": {
 			      "Definition": {
@@ -141,7 +129,7 @@ cultureInfo pt-BR
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Tempo de associação": {
+			          "Tempo desde a associação": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -162,7 +150,7 @@ cultureInfo pt-BR
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Produto": {
+			          "Categoria de produto": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -184,6 +172,247 @@ cultureInfo pt-BR
 			      "Terms": [
 			        {
 			          "Classe RFV": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "associados.nps": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "associados",
+			          "ConceptualProperty": "NPS"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "NPS (pontos)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "associados.conversão_sobre_aberturas": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "associados",
+			          "ConceptualProperty": "Conversão sobre Aberturas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Conversão (aberturas)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "associados.público_potencial_de_cartão": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "associados",
+			          "ConceptualProperty": "Público Potencial de Cartão"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Potencial de Cartão": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "associados.nota_média_de_recomendação": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "associados",
+			          "ConceptualProperty": "Nota Média de Recomendação"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Nota Média (0 a 10)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Nota média": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "associados.faixa_de_categorias": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "associados",
+			          "ConceptualProperty": "Faixa de Categorias"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Categorias de produtos": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "associados.média_de_categorias": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "associados",
+			          "ConceptualProperty": "Média de Categorias"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Categorias": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "associados.transações_médias": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "associados",
+			          "ConceptualProperty": "Transações Médias"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Transações": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "associados.dias_sem_acesso_médio": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "associados",
+			          "ConceptualProperty": "Dias sem Acesso Médio"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Dias sem acesso": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "associados.campanhas_recebidas": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "associados",
+			          "ConceptualProperty": "Campanhas Recebidas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Recebidas": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "associados.campanhas_abertas": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "associados",
+			          "ConceptualProperty": "Campanhas Abertas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Abertas": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "associados.campanhas_convertidas": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "associados",
+			          "ConceptualProperty": "Campanhas Convertidas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Convertidas": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",

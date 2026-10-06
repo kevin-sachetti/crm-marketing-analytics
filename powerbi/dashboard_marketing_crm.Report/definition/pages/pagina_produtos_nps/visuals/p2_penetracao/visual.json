@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p2_penetracao",
   "position": {
     "x": 20,
     "y": 192,
-    "z": 9000,
+    "z": 12000,
     "height": 250,
     "width": 610,
-    "tabOrder": 9000
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -28,8 +28,8 @@
               },
               "queryRef": "produtos_posse.produto",
               "nativeQueryRef": "produto",
-              "displayName": "Produto",
-              "active": true
+              "active": true,
+              "displayName": "Categoria de produto"
             }
           ]
         },
@@ -67,8 +67,7 @@
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "objects": {
@@ -104,6 +103,41 @@
             }
           }
         }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "defaultColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3B811D'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3B811D'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produtos_posse.Penetração"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -120,7 +154,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Penetração de cada produto'"
+                  "Value": "'Penetração de cada categoria de produto'"
                 }
               }
             }

@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_cartao_2",
   "position": {
-    "x": 269,
+    "x": 176,
     "y": 84,
     "z": 5000,
     "height": 96,
-    "width": 241,
+    "width": 148,
     "tabOrder": 5000
   },
   "visual": {
@@ -23,11 +23,12 @@
                       "Entity": "associados"
                     }
                   },
-                  "Property": "NPS"
+                  "Property": "Público Potencial de Cartão"
                 }
               },
-              "queryRef": "associados.NPS",
-              "nativeQueryRef": "NPS"
+              "queryRef": "associados.Público Potencial de Cartão",
+              "nativeQueryRef": "Público Potencial de Cartão",
+              "displayName": "Potencial de Cartão"
             }
           ]
         }
@@ -67,7 +68,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "8D"
                 }
               }
             }

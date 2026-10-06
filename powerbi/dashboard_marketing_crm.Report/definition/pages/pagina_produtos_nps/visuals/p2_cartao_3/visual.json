@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_cartao_3",
   "position": {
-    "x": 518,
+    "x": 332,
     "y": 84,
     "z": 6000,
     "height": 96,
-    "width": 241,
+    "width": 148,
     "tabOrder": 6000
   },
   "visual": {
@@ -23,11 +23,12 @@
                       "Entity": "associados"
                     }
                   },
-                  "Property": "% Promotores"
+                  "Property": "NPS"
                 }
               },
-              "queryRef": "associados.% Promotores",
-              "nativeQueryRef": "% Promotores"
+              "queryRef": "associados.NPS",
+              "nativeQueryRef": "NPS",
+              "displayName": "NPS (pontos)"
             }
           ]
         }
@@ -67,7 +68,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "8D"
                 }
               }
             }

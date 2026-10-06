@@ -39,7 +39,7 @@ table produtos_posse
 				    #"Outras Colunas Não Dinâmicas" = Table.UnpivotOtherColumns(#"Outras Colunas Removidas", {"associado_id"}, "Atributo", "Valor"),
 				    #"Colunas Renomeadas" = Table.RenameColumns(#"Outras Colunas Não Dinâmicas",{{"Atributo", "produto"}, {"Valor", "tem_produto"}}),
 				    #"Valor Substituído" = Table.ReplaceValue(#"Colunas Renomeadas","tem_cartao_credito","Cartão de crédito",Replacer.ReplaceText,{"produto"}),
-				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","tem_seguro","Seguro",Replacer.ReplaceText,{"produto"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","tem_seguro","Seguros (qualquer modalidade)",Replacer.ReplaceText,{"produto"}),
 				    #"Valor Substituído2" = Table.ReplaceValue(#"Valor Substituído1","tem_consorcio","Consórcio",Replacer.ReplaceText,{"produto"}),
 				    #"Valor Substituído3" = Table.ReplaceValue(#"Valor Substituído2","tem_previdencia","Previdência",Replacer.ReplaceText,{"produto"}),
 				    #"Valor Substituído4" = Table.ReplaceValue(#"Valor Substituído3","tem_credito_rural","Crédito rural",Replacer.ReplaceText,{"produto"}),

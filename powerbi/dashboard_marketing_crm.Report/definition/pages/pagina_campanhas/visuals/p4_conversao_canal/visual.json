@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p4_conversao_canal",
   "position": {
     "x": 850,
     "y": 192,
-    "z": 11000,
+    "z": 12000,
     "height": 250,
     "width": 410,
-    "tabOrder": 11000
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -28,8 +28,8 @@
               },
               "queryRef": "associados.canal_aquisicao",
               "nativeQueryRef": "canal_aquisicao",
-              "displayName": "Canal de aquisição",
-              "active": true
+              "active": true,
+              "displayName": "Canal de aquisição"
             }
           ]
         },
@@ -43,11 +43,11 @@
                       "Entity": "associados"
                     }
                   },
-                  "Property": "Taxa de Conversão"
+                  "Property": "Conversão sobre Aberturas"
                 }
               },
-              "queryRef": "associados.Taxa de Conversão",
-              "nativeQueryRef": "Taxa de Conversão"
+              "queryRef": "associados.Conversão sobre Aberturas",
+              "nativeQueryRef": "Conversão sobre Aberturas"
             }
           ]
         }
@@ -62,13 +62,12 @@
                     "Entity": "associados"
                   }
                 },
-                "Property": "Taxa de Conversão"
+                "Property": "Conversão sobre Aberturas"
               }
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "objects": {
@@ -104,6 +103,41 @@
             }
           }
         }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "defaultColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3B811D'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3B811D'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "associados.Conversão sobre Aberturas"
+          }
+        }
       ]
     },
     "visualContainerObjects": {
@@ -120,7 +154,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Taxa de conversão por canal de aquisição'"
+                  "Value": "'Conversão sobre aberturas por canal de aquisição'"
                 }
               }
             }

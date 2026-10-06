@@ -1,13 +1,13 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "p2_oportunidade",
   "position": {
     "x": 850,
     "y": 452,
-    "z": 13000,
+    "z": 16000,
     "height": 256,
     "width": 410,
-    "tabOrder": 13000
+    "tabOrder": 16000
   },
   "visual": {
     "visualType": "clusteredBarChart",
@@ -28,8 +28,8 @@
               },
               "queryRef": "associados.segmento",
               "nativeQueryRef": "segmento",
-              "displayName": "Segmento",
-              "active": true
+              "active": true,
+              "displayName": "Segmento"
             }
           ]
         },
@@ -43,11 +43,11 @@
                       "Entity": "associados"
                     }
                   },
-                  "Property": "Oportunidade Cartão"
+                  "Property": "Público Potencial de Cartão"
                 }
               },
-              "queryRef": "associados.Oportunidade Cartão",
-              "nativeQueryRef": "Oportunidade Cartão"
+              "queryRef": "associados.Público Potencial de Cartão",
+              "nativeQueryRef": "Público Potencial de Cartão"
             }
           ]
         }
@@ -62,13 +62,12 @@
                     "Entity": "associados"
                   }
                 },
-                "Property": "Oportunidade Cartão"
+                "Property": "Público Potencial de Cartão"
               }
             },
             "direction": "Descending"
           }
-        ],
-        "isDefaultSort": false
+        ]
       }
     },
     "objects": {
@@ -102,6 +101,41 @@
                 }
               }
             }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "defaultColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3B811D'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#3B811D'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "associados.Público Potencial de Cartão"
           }
         }
       ]

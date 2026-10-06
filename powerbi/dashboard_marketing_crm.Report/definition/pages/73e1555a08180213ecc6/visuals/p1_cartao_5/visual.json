@@ -23,11 +23,11 @@
                       "Entity": "associados"
                     }
                   },
-                  "Property": "Média de Produtos"
+                  "Property": "Média de Categorias"
                 }
               },
-              "queryRef": "associados.Média de Produtos",
-              "nativeQueryRef": "Média de Produtos"
+              "queryRef": "associados.Média de Categorias",
+              "nativeQueryRef": "Média de Categorias"
             }
           ]
         }
@@ -67,7 +67,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "8D"
                 }
               }
             }

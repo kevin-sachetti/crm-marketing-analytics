@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p2_cartao_4",
   "position": {
-    "x": 767,
+    "x": 488,
     "y": 84,
     "z": 7000,
     "height": 96,
-    "width": 241,
+    "width": 148,
     "tabOrder": 7000
   },
   "visual": {
@@ -23,11 +23,12 @@
                       "Entity": "associados"
                     }
                   },
-                  "Property": "% Detratores"
+                  "Property": "Nota Média de Recomendação"
                 }
               },
-              "queryRef": "associados.% Detratores",
-              "nativeQueryRef": "% Detratores"
+              "queryRef": "associados.Nota Média de Recomendação",
+              "nativeQueryRef": "Nota Média de Recomendação",
+              "displayName": "Nota Média (0 a 10)"
             }
           ]
         }
@@ -67,7 +68,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "8D"
                 }
               }
             }

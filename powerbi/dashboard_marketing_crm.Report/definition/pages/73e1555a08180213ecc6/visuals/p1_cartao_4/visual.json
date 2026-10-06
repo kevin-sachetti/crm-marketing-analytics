@@ -27,7 +27,8 @@
                 }
               },
               "queryRef": "associados.NPS",
-              "nativeQueryRef": "NPS"
+              "nativeQueryRef": "NPS",
+              "displayName": "NPS (pontos)"
             }
           ]
         }
@@ -67,7 +68,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9D"
+                  "Value": "8D"
                 }
               }
             }
